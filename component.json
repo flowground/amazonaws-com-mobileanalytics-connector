@@ -1,0 +1,57 @@
+{
+    "title": "Amazon Mobile Analytics",
+    "description": "Amazon Mobile Analytics is a service for collecting, visualizing, and understanding app usage data at scale.",
+    "docsUrl": "https://docs.aws.amazon.com/mobileanalytics/",
+    "url": "https://api.apis.guru/v2/specs/amazonaws.com/mobileanalytics/2014-06-05/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://mobileanalytics.amazonaws.com/",
+                    "http://mobileanalytics.amazonaws.com/",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "hmac": {
+                "label": "Authorization (hmac)",
+                "viewClass": "TextFieldView",
+                "note": "Amazon Signature authorization v4"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "PutEvents": {
+            "main": "./lib/actions/PutEvents.js",
+            "title": "The PutEvents operation records one or more events. You can have up to 1,500 unique custom events per app, any combination of up to 40 attributes and metrics per custom event, and any number of attribute or metric values.",
+            "description": "The PutEvents operation records one or more events. You can have up to 1,500 unique custom events per app, any combination of up to 40 attributes and metrics per custom event, and any number of attribute or metric values.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/PutEvents.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

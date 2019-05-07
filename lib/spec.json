@@ -1,0 +1,754 @@
+{
+    "openapi": "3.0.0",
+    "servers": [
+        {
+            "url": "https://mobileanalytics.amazonaws.com/"
+        },
+        {
+            "url": "http://mobileanalytics.amazonaws.com/"
+        }
+    ],
+    "info": {
+        "contact": {
+            "email": "mike.ralphson@gmail.com",
+            "name": "Mike Ralphson",
+            "url": "https://github.com/mermade/aws2openapi",
+            "x-twitter": "PermittedSoc"
+        },
+        "description": "Amazon Mobile Analytics is a service for collecting, visualizing, and understanding app usage data at scale.",
+        "license": {
+            "name": "Apache 2.0 License",
+            "url": "http://www.apache.org/licenses/"
+        },
+        "termsOfService": "https://aws.amazon.com/service-terms/",
+        "title": "Amazon Mobile Analytics",
+        "version": "2014-06-05",
+        "x-apiClientRegistration": {
+            "url": "https://portal.aws.amazon.com/gp/aws/developer/registration/index.html?nc2=h_ct"
+        },
+        "x-apisguru-categories": [
+            "cloud"
+        ],
+        "x-logo": {
+            "backgroundColor": "#FFFFFF",
+            "url": "https://api.apis.guru/v2/cache/logo/https_twitter.com_awscloud_profile_image.jpeg"
+        },
+        "x-origin": [
+            {
+                "contentType": "application/json",
+                "converter": {
+                    "url": "https://github.com/mermade/aws2openapi",
+                    "version": "1.0.0"
+                },
+                "url": "https://raw.githubusercontent.com/aws/aws-sdk-js/master/apis/mobileanalytics-2014-06-05.normal.json",
+                "x-apisguru-direct": true
+            }
+        ],
+        "x-preferred": true,
+        "x-providerName": "amazonaws.com",
+        "x-release": "v4",
+        "x-serviceName": "mobileanalytics"
+    },
+    "externalDocs": {
+        "description": "Amazon Web Services documentation",
+        "url": "https://docs.aws.amazon.com/mobileanalytics/"
+    },
+    "security": [
+        {
+            "hmac": []
+        }
+    ],
+    "paths": {
+        "/2014-06-05/events": {
+            "parameters": [
+                {
+                    "in": "query",
+                    "name": "Action",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "query",
+                    "name": "Version",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Content-Sha256",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Date",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Algorithm",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Credential",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Security-Token",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-Signature",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                },
+                {
+                    "in": "header",
+                    "name": "X-Amz-SignedHeaders",
+                    "required": false,
+                    "schema": {
+                        "type": "string"
+                    }
+                }
+            ],
+            "post": {
+                "description": "The PutEvents operation records one or more events. You can have up to 1,500 unique custom events per app, any combination of up to 40 attributes and metrics per custom event, and any number of attribute or metric values.",
+                "operationId": "PutEvents",
+                "responses": {
+                    "202": {
+                        "description": "Success"
+                    },
+                    "400": {
+                        "description": "BadRequestException",
+                        "x-aws-exception": true,
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "description": "An exception object returned when a request fails.",
+                                    "properties": {
+                                        "message": {
+                                            "description": "A text description associated with the BadRequestException object.",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "description": "A container for the data needed for a PutEvent operation",
+                                "properties": {
+                                    "events": {
+                                        "description": "An array of Event JSON objects",
+                                        "items": {
+                                            "description": "A JSON object representing a batch of unique event occurrences in your app.",
+                                            "properties": {
+                                                "attributes": {
+                                                    "description": "<p>A collection of key-value pairs that give additional context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                                                    "items": {
+                                                        "properties": {
+                                                            "key": {
+                                                                "maxLength": 50,
+                                                                "minLength": 1,
+                                                                "type": "string"
+                                                            },
+                                                            "value": {
+                                                                "maxLength": 1000,
+                                                                "minLength": 0,
+                                                                "type": "string"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "maxItems": 50,
+                                                    "minItems": 0,
+                                                    "type": "array"
+                                                },
+                                                "eventType": {
+                                                    "description": "A name signifying an event that occurred in your app. This is used for grouping and aggregating like events together for reporting purposes.",
+                                                    "maxLength": 50,
+                                                    "minLength": 1,
+                                                    "type": "string"
+                                                },
+                                                "metrics": {
+                                                    "description": "<p>A collection of key-value pairs that gives additional, measurable context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                                                    "items": {
+                                                        "properties": {
+                                                            "key": {
+                                                                "maxLength": 50,
+                                                                "minLength": 1,
+                                                                "type": "string"
+                                                            },
+                                                            "value": {
+                                                                "format": "double",
+                                                                "type": "number"
+                                                            }
+                                                        },
+                                                        "type": "object"
+                                                    },
+                                                    "maxItems": 50,
+                                                    "minItems": 0,
+                                                    "type": "array"
+                                                },
+                                                "session": {
+                                                    "description": "The session the event occured within. ",
+                                                    "properties": {
+                                                        "duration": {
+                                                            "description": "The duration of the session.",
+                                                            "type": "integer"
+                                                        },
+                                                        "id": {
+                                                            "description": "A unique identifier for the session",
+                                                            "maxLength": 50,
+                                                            "minLength": 1,
+                                                            "type": "string"
+                                                        },
+                                                        "startTimestamp": {
+                                                            "description": "The time the event started in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                                            "type": "string"
+                                                        },
+                                                        "stopTimestamp": {
+                                                            "description": "The time the event terminated in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                },
+                                                "timestamp": {
+                                                    "description": "The time the event occurred in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                                    "type": "string"
+                                                },
+                                                "version": {
+                                                    "description": "The version of the event.",
+                                                    "maxLength": 10,
+                                                    "minLength": 1,
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "required": [
+                                                "eventType",
+                                                "timestamp"
+                                            ],
+                                            "type": "object"
+                                        },
+                                        "type": "array"
+                                    }
+                                },
+                                "required": [
+                                    "events"
+                                ],
+                                "type": "object"
+                            }
+                        }
+                    },
+                    "required": true
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "BadRequestException": {
+                "description": "An exception object returned when a request fails.",
+                "properties": {
+                    "message": {
+                        "description": "A text description associated with the BadRequestException object.",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "Double": {
+                "format": "double",
+                "type": "number"
+            },
+            "Event": {
+                "description": "A JSON object representing a batch of unique event occurrences in your app.",
+                "properties": {
+                    "attributes": {
+                        "description": "<p>A collection of key-value pairs that give additional context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                        "items": {
+                            "properties": {
+                                "key": {
+                                    "maxLength": 50,
+                                    "minLength": 1,
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "maxLength": 1000,
+                                    "minLength": 0,
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "maxItems": 50,
+                        "minItems": 0,
+                        "type": "array"
+                    },
+                    "eventType": {
+                        "description": "A name signifying an event that occurred in your app. This is used for grouping and aggregating like events together for reporting purposes.",
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "metrics": {
+                        "description": "<p>A collection of key-value pairs that gives additional, measurable context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                        "items": {
+                            "properties": {
+                                "key": {
+                                    "maxLength": 50,
+                                    "minLength": 1,
+                                    "type": "string"
+                                },
+                                "value": {
+                                    "format": "double",
+                                    "type": "number"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "maxItems": 50,
+                        "minItems": 0,
+                        "type": "array"
+                    },
+                    "session": {
+                        "description": "The session the event occured within. ",
+                        "properties": {
+                            "duration": {
+                                "description": "The duration of the session.",
+                                "type": "integer"
+                            },
+                            "id": {
+                                "description": "A unique identifier for the session",
+                                "maxLength": 50,
+                                "minLength": 1,
+                                "type": "string"
+                            },
+                            "startTimestamp": {
+                                "description": "The time the event started in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                "type": "string"
+                            },
+                            "stopTimestamp": {
+                                "description": "The time the event terminated in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "timestamp": {
+                        "description": "The time the event occurred in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                        "type": "string"
+                    },
+                    "version": {
+                        "description": "The version of the event.",
+                        "maxLength": 10,
+                        "minLength": 1,
+                        "type": "string"
+                    }
+                },
+                "required": [
+                    "eventType",
+                    "timestamp"
+                ],
+                "type": "object"
+            },
+            "EventListDefinition": {
+                "items": {
+                    "description": "A JSON object representing a batch of unique event occurrences in your app.",
+                    "properties": {
+                        "attributes": {
+                            "description": "<p>A collection of key-value pairs that give additional context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                            "items": {
+                                "properties": {
+                                    "key": {
+                                        "maxLength": 50,
+                                        "minLength": 1,
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "maxLength": 1000,
+                                        "minLength": 0,
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "maxItems": 50,
+                            "minItems": 0,
+                            "type": "array"
+                        },
+                        "eventType": {
+                            "description": "A name signifying an event that occurred in your app. This is used for grouping and aggregating like events together for reporting purposes.",
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "metrics": {
+                            "description": "<p>A collection of key-value pairs that gives additional, measurable context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                            "items": {
+                                "properties": {
+                                    "key": {
+                                        "maxLength": 50,
+                                        "minLength": 1,
+                                        "type": "string"
+                                    },
+                                    "value": {
+                                        "format": "double",
+                                        "type": "number"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "maxItems": 50,
+                            "minItems": 0,
+                            "type": "array"
+                        },
+                        "session": {
+                            "description": "The session the event occured within. ",
+                            "properties": {
+                                "duration": {
+                                    "description": "The duration of the session.",
+                                    "type": "integer"
+                                },
+                                "id": {
+                                    "description": "A unique identifier for the session",
+                                    "maxLength": 50,
+                                    "minLength": 1,
+                                    "type": "string"
+                                },
+                                "startTimestamp": {
+                                    "description": "The time the event started in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                    "type": "string"
+                                },
+                                "stopTimestamp": {
+                                    "description": "The time the event terminated in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "timestamp": {
+                            "description": "The time the event occurred in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                            "type": "string"
+                        },
+                        "version": {
+                            "description": "The version of the event.",
+                            "maxLength": 10,
+                            "minLength": 1,
+                            "type": "string"
+                        }
+                    },
+                    "required": [
+                        "eventType",
+                        "timestamp"
+                    ],
+                    "type": "object"
+                },
+                "type": "array"
+            },
+            "ISO8601Timestamp": {
+                "type": "string"
+            },
+            "Long": {
+                "type": "integer"
+            },
+            "MapOfStringToNumber": {
+                "items": {
+                    "properties": {
+                        "key": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "value": {
+                            "format": "double",
+                            "type": "number"
+                        }
+                    },
+                    "type": "object"
+                },
+                "maxItems": 50,
+                "minItems": 0,
+                "type": "array"
+            },
+            "MapOfStringToString": {
+                "items": {
+                    "properties": {
+                        "key": {
+                            "maxLength": 50,
+                            "minLength": 1,
+                            "type": "string"
+                        },
+                        "value": {
+                            "maxLength": 1000,
+                            "minLength": 0,
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "maxItems": 50,
+                "minItems": 0,
+                "type": "array"
+            },
+            "PutEventsInput": {
+                "description": "A container for the data needed for a PutEvent operation",
+                "properties": {
+                    "events": {
+                        "description": "An array of Event JSON objects",
+                        "items": {
+                            "description": "A JSON object representing a batch of unique event occurrences in your app.",
+                            "properties": {
+                                "attributes": {
+                                    "description": "<p>A collection of key-value pairs that give additional context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                                    "items": {
+                                        "properties": {
+                                            "key": {
+                                                "maxLength": 50,
+                                                "minLength": 1,
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "maxLength": 1000,
+                                                "minLength": 0,
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "maxItems": 50,
+                                    "minItems": 0,
+                                    "type": "array"
+                                },
+                                "eventType": {
+                                    "description": "A name signifying an event that occurred in your app. This is used for grouping and aggregating like events together for reporting purposes.",
+                                    "maxLength": 50,
+                                    "minLength": 1,
+                                    "type": "string"
+                                },
+                                "metrics": {
+                                    "description": "<p>A collection of key-value pairs that gives additional, measurable context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                                    "items": {
+                                        "properties": {
+                                            "key": {
+                                                "maxLength": 50,
+                                                "minLength": 1,
+                                                "type": "string"
+                                            },
+                                            "value": {
+                                                "format": "double",
+                                                "type": "number"
+                                            }
+                                        },
+                                        "type": "object"
+                                    },
+                                    "maxItems": 50,
+                                    "minItems": 0,
+                                    "type": "array"
+                                },
+                                "session": {
+                                    "description": "The session the event occured within. ",
+                                    "properties": {
+                                        "duration": {
+                                            "description": "The duration of the session.",
+                                            "type": "integer"
+                                        },
+                                        "id": {
+                                            "description": "A unique identifier for the session",
+                                            "maxLength": 50,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "startTimestamp": {
+                                            "description": "The time the event started in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                            "type": "string"
+                                        },
+                                        "stopTimestamp": {
+                                            "description": "The time the event terminated in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "timestamp": {
+                                    "description": "The time the event occurred in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                    "type": "string"
+                                },
+                                "version": {
+                                    "description": "The version of the event.",
+                                    "maxLength": 10,
+                                    "minLength": 1,
+                                    "type": "string"
+                                }
+                            },
+                            "required": [
+                                "eventType",
+                                "timestamp"
+                            ],
+                            "type": "object"
+                        },
+                        "type": "array"
+                    }
+                },
+                "required": [
+                    "events"
+                ],
+                "type": "object"
+            },
+            "Session": {
+                "description": "Describes the session. Session information is required on ALL events.",
+                "properties": {
+                    "duration": {
+                        "description": "The duration of the session.",
+                        "type": "integer"
+                    },
+                    "id": {
+                        "description": "A unique identifier for the session",
+                        "maxLength": 50,
+                        "minLength": 1,
+                        "type": "string"
+                    },
+                    "startTimestamp": {
+                        "description": "The time the event started in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                        "type": "string"
+                    },
+                    "stopTimestamp": {
+                        "description": "The time the event terminated in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "String": {
+                "type": "string"
+            },
+            "String0to1000Chars": {
+                "maxLength": 1000,
+                "minLength": 0,
+                "type": "string"
+            },
+            "String10Chars": {
+                "maxLength": 10,
+                "minLength": 1,
+                "type": "string"
+            },
+            "String50Chars": {
+                "maxLength": 50,
+                "minLength": 1,
+                "type": "string"
+            }
+        },
+        "parameters": {
+            "Action": {
+                "in": "query",
+                "name": "Action",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "Version": {
+                "in": "query",
+                "name": "Version",
+                "required": true,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Algorithm": {
+                "in": "header",
+                "name": "X-Amz-Algorithm",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Content-Sha256": {
+                "in": "header",
+                "name": "X-Amz-Content-Sha256",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Credential": {
+                "in": "header",
+                "name": "X-Amz-Credential",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Date": {
+                "in": "header",
+                "name": "X-Amz-Date",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Security-Token": {
+                "in": "header",
+                "name": "X-Amz-Security-Token",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-Signature": {
+                "in": "header",
+                "name": "X-Amz-Signature",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            },
+            "X-Amz-SignedHeaders": {
+                "in": "header",
+                "name": "X-Amz-SignedHeaders",
+                "required": false,
+                "schema": {
+                    "type": "string"
+                }
+            }
+        },
+        "securitySchemes": {
+            "hmac": {
+                "description": "Amazon Signature authorization v4",
+                "in": "header",
+                "name": "Authorization",
+                "type": "apiKey",
+                "x-amazon-apigateway-authtype": "awsSigv4"
+            }
+        }
+    }
+}

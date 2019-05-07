@@ -1,0 +1,145 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "A container for the data needed for a PutEvent operation",
+            "properties": {
+                "events": {
+                    "description": "An array of Event JSON objects",
+                    "items": {
+                        "description": "A JSON object representing a batch of unique event occurrences in your app.",
+                        "properties": {
+                            "attributes": {
+                                "description": "<p>A collection of key-value pairs that give additional context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                                "items": {
+                                    "properties": {
+                                        "key": {
+                                            "maxLength": 50,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "value": {
+                                            "maxLength": 1000,
+                                            "minLength": 0,
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "maxItems": 50,
+                                "minItems": 0,
+                                "type": "array"
+                            },
+                            "eventType": {
+                                "description": "A name signifying an event that occurred in your app. This is used for grouping and aggregating like events together for reporting purposes.",
+                                "maxLength": 50,
+                                "minLength": 1,
+                                "type": "string"
+                            },
+                            "metrics": {
+                                "description": "<p>A collection of key-value pairs that gives additional, measurable context to the event. The key-value pairs are specified by the developer.</p> <p>This collection can be empty or the attribute object can be omitted.</p>",
+                                "items": {
+                                    "properties": {
+                                        "key": {
+                                            "maxLength": 50,
+                                            "minLength": 1,
+                                            "type": "string"
+                                        },
+                                        "value": {
+                                            "format": "double",
+                                            "type": "number"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "maxItems": 50,
+                                "minItems": 0,
+                                "type": "array"
+                            },
+                            "session": {
+                                "description": "The session the event occured within. ",
+                                "properties": {
+                                    "duration": {
+                                        "description": "The duration of the session.",
+                                        "type": "integer"
+                                    },
+                                    "id": {
+                                        "description": "A unique identifier for the session",
+                                        "maxLength": 50,
+                                        "minLength": 1,
+                                        "type": "string"
+                                    },
+                                    "startTimestamp": {
+                                        "description": "The time the event started in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                        "type": "string"
+                                    },
+                                    "stopTimestamp": {
+                                        "description": "The time the event terminated in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "timestamp": {
+                                "description": "The time the event occurred in ISO 8601 standard date time format. For example, 2014-06-30T19:07:47.885Z",
+                                "type": "string"
+                            },
+                            "version": {
+                                "description": "The version of the event.",
+                                "maxLength": 10,
+                                "minLength": 1,
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "eventType",
+                            "timestamp"
+                        ],
+                        "type": "object"
+                    },
+                    "type": "array"
+                }
+            },
+            "required": [
+                "events"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
